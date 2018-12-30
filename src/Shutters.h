@@ -31,9 +31,12 @@ namespace ShuttersInternal {
   };
   enum Direction : bool { DIRECTION_DOWN, DIRECTION_UP };
 
-  typedef void (*OperationHandler)(::Shutters* s, ::ShuttersOperation operation);
-  typedef void (*WriteStateHandler)(::Shutters* s, const char* state, uint8_t length);
-  typedef void (*LevelReachedCallback)(::Shutters* s, uint8_t level);
+  //typedef void (*OperationHandler)(::Shutters* s, ::ShuttersOperation operation);
+  typedef std::function<void(::Shutters* s, ::ShuttersOperation operation)> OperationHandler;
+  typedef std::function<void(::Shutters* s, const char* state, uint8_t length)> WriteStateHandler;
+  typedef std::function<void(::Shutters* s, uint8_t level)> LevelReachedCallback;
+  //typedef void (*WriteStateHandler)(::Shutters* s, const char* state, uint8_t length);
+  //typedef void (*LevelReachedCallback)(::Shutters* s, uint8_t level);
 }
 
 class Shutters {
